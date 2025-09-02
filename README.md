@@ -10,3 +10,6 @@
 
 ## Overview
 This repository contains all of the Assignments provided for Operating Systems Course during the Monsoon semester of 2025.
+
+## Course-Information
+- Course-Name : CSE231_operating_System
