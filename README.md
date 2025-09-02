@@ -35,6 +35,6 @@ Here's a sneak peek at some of the assignments you'll find in this repository:
 git clone https://github.com/GaGaNRaJ2003/CSE231_Assignments.git
 
 
-
+![Ben10GIF](https://github.com/user-attachments/assets/493ade17-63f3-4020-a818-3d259fb82d9e)
 
 
