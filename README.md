@@ -18,7 +18,7 @@ This repository contains all of the Assignments provided for Operating Systems C
 
 ## Assignments
 Here's a sneak peek at some of the assignments you'll find in this repository:
-1. [Assignment 1: "SimpleLoader: An ELF Loader in C from Scratch"](#Assignment-1: "SimpleLoader:A n ELF Loader in C from Scratch")
+1. [Assignment 1: "SimpleLoader: An ELF Loader in C from Scratch"](#Assignment-1-SimpleLoader-An-ELF-Loader-in-C-from-Scratch")
    - Implement a SimpleLoader for loading an ELF 32-bit executable in plain-C.
    - Without using any library APIs available.
 
