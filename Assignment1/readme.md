@@ -1,5 +1,5 @@
-#SimpleLoader
+# SimpleLoader
 SimpleLoader is a program for loading an ELF 32-bit executable in plain-C 
 without using any library APIs available for manipulating ELF files.
 This README provides a concise overview of the loader's functionality and usage.
-##Steps for using the SimpleLoader
+## Steps for using the SimpleLoader
