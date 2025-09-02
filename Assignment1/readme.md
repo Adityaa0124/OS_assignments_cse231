@@ -62,5 +62,5 @@ sudo apt install make
    - Tutorial slides
    - https://man7.org/linux/man-pages/man5/elf.5.html
    - https://wiki.osdev.org/ELF_Tutorial
-   Using the above sources we learned how to use mmap, munmap, cleared our minor doubts during the
+- Using the above sources we learned how to use mmap, munmap, cleared our minor doubts during the
 assignment. Also, we had to use filesz to tell the system how many bytes to read while reading from the ELF file to the memory. 
