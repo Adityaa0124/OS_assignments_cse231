@@ -26,7 +26,15 @@ Here's a sneak peek at some of the assignments you'll find in this repository:
 - [Aditya Kumar](https://github.com/Adityaa0124)
 - [Dipanshu](https://github.com/dipanshu2313uwu)
 
-## Getting-Started
+## Getting-Started 
+
+1. Clone this repository to your local machine.  
+2. Navigate to the specific assignment folder you want to explore.  
+
+```bash
+git clone https://github.com/GaGaNRaJ2003/CSE231_Assignments.git
+
+
 
 
 
