@@ -12,4 +12,12 @@
 This repository contains all of the Assignments provided for Operating Systems Course during the Monsoon semester of 2025.
 
 ## Course-Information
-- Course-Name : CSE231_operating_System
+- **Course-Name** : CSE231 - Operating System
+- **Semester** : Monsoon - 2025
+- **instructor** : Prof. Vivek Kumar
+
+## Assignments
+Here's a sneak peek at some of the assignments you'll find in this repository:
+1 [Assignment 1: "SimpleLoader: An ELF Loader in C from Scratch"](#Assignment 1: "SimpleLoader: An ELF Loader in C from Scratch")
+
+
