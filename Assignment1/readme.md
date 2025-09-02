@@ -33,10 +33,10 @@ sudo apt install make
 
 2. **Read the ELF header:**
    The ELF header (Elf32_Ehdr) contains important content, such as:
-Program header offset (e_phoff)
-   Number of program headers (e_phnum)
-   Entry point address (e_entry)
-   The loader reads this header first.
+   -Program header offset (e_phoff)
+   -Number of program headers (e_phnum)
+   -Entry point address (e_entry)
+   -The loader reads this header first.
 
 3. **Read the Program Headers:**
    Program headers (Elf32_Phdr) describe the segments that need to be loaded into memory. The loader reads all program headers into memory using lseek() to move to the correct file offset.
