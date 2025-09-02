@@ -18,9 +18,7 @@ void loader_cleanup() {
     }
     free(mapped_segments);
     mapped_segments = NULL;
-
   }
-
   if(ehdr){
     free(ehdr);
     ehdr = NULL;
@@ -39,69 +37,49 @@ void loader_cleanup() {
  * Load and run the ELF executable file
  */
 void load_and_run_elf(char** exe) {
-  
   fd = open(*exe, O_RDONLY);
   // 1. Load entire binary content into the memory from the ELF file.
-
-  // error check
-  if(fd < 0){
-    perror("not able to open file");
+  if(fd < 0){                             // error check
+    perror("not able to open file");    
     exit(1);
   }
+//   loading the elf header
     ehdr = malloc(sizeof(Elf32_Ehdr));
-    lseek(fd,0,SEEK_SET); // this is telling me the start of the file
+    lseek(fd,0,SEEK_SET); // this moves the cursor to the beginning of the file
     if(read(fd,ehdr,sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr)){
       perror("error reading the elf header");
       exit(1);
-    }
-    
-    // if(ehdr == NULL){
-    //   perror("eror i allocating the memory for elf header\n");
-    //   close(fd);
-    //   exit(1);
-    // };
-
-// 2 - a - loading the program headers
-
+    }    
+// loading the program headers
   phdr = malloc(ehdr->e_phnum*sizeof(Elf32_Phdr)); // loading and allocating the size mem program header
   lseek(fd, ehdr->e_phoff, SEEK_SET); // lseek will move the pointer to from offset seek_set
   if(read(fd,phdr,ehdr->e_phnum * sizeof(Elf32_Phdr)) != ehdr->e_phnum * sizeof(Elf32_Phdr) ){
-      perror("failed to read PHDRs");
+      perror("error reading the program header");
       exit(1);
   }
-
-// 2-b-tracking the program header remembering the to no. of entries and in mapped segment
+// storing the memory addresses allocated with mmap for later use during freeup
   mapped_segments = malloc(sizeof(void*)* ehdr->e_phnum);
   num_segments = ehdr->e_phnum; // saving the no. of entries of mapped segement
-  // 2. Iterate through the PHDR table and find the section of PT_LOAD 
-  
-  //    type that contains the address of the entrypoint method in fib.c
-  for(int i = 0; i<ehdr->e_phnum; i++){
-    
-    if(phdr[i].p_type == PT_LOAD){
-      void *virtual_mem = mmap(NULL , phdr[i].p_memsz, PROT_READ | PROT_WRITE | PROT_EXEC , MAP_ANONYMOUS | MAP_PRIVATE,0,0);
-      if(virtual_mem == MAP_FAILED){
-        perror("failed to mmap");
-        exit(1);
-      }
-     
-      lseek(fd,phdr[i].p_offset,SEEK_SET);
-      if(read(fd,virtual_mem,phdr[i].p_filesz)!= phdr[i].p_filesz) {
-        perror(" failed to read the segment");
-        exit(1);
-      }
-       // zero out the remaining memory for .bss which is not initialized
-       if(phdr[i].p_memsz > phdr[i].p_filesz){
-        memset(virtual_mem + phdr[i].p_filesz, 0 , phdr[i].p_memsz - phdr[i].p_filesz);
-       }
-       mapped_segments[i] = virtual_mem;
+  // 2. Iterate through the PHDR table and find the section of PT_LOAD type that contains the address of the entrypoint method in fib.c
+  // 3. Allocate memory of the size "p_memsz" using mmap function and then copy the segment content
+  for(int i = 0; i<ehdr->e_phnum; i++){   
+      if(phdr[i].p_type == PT_LOAD){
+          void *virtual_mem = mmap(NULL , phdr[i].p_memsz, PROT_READ | PROT_WRITE | PROT_EXEC , MAP_ANONYMOUS | MAP_PRIVATE,0,0);
+          if(virtual_mem == MAP_FAILED){
+              perror("failed to mmap");
+              exit(1);
+            }
+            lseek(fd,phdr[i].p_offset,SEEK_SET);
+            if(read(fd,virtual_mem,phdr[i].p_filesz)!= phdr[i].p_filesz) {
+                perror(" failed to read the segment");
+                exit(1);
+            }
+            mapped_segments[i] = virtual_mem;
+        }
+        else{
+            mapped_segments[i] = NULL;
+        }
     }
-    else{
-      mapped_segments[i] = NULL;
-    }
-  }
-  // 3. Allocate memory of the size "p_memsz" using mmap function 
-  //    and then copy the segment content
   // 4. Navigate to the entrypoint address into the segment loaded in the memory in above step
     void *entry_ptr = NULL;
     for(int i = 0; i <ehdr->e_phnum; i++){
@@ -123,11 +101,11 @@ void load_and_run_elf(char** exe) {
 
 int main(int argc, char** argv) 
 {
+    // 1. carry out necessary checks on the input ELF file
   if(argc != 2) {
     printf("Usage: %s <ELF Executable> \n",argv[0]);
     exit(1);
   }
-  // 1. carry out necessary checks on the input ELF file
   // 2. passing it to the loader for carrying out the loading/execution
   load_and_run_elf(&argv[1]);
   // 3. invoke the cleanup routine inside the loader  
