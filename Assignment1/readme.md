@@ -33,26 +33,26 @@ sudo apt install make
 
 2. **Read the ELF header:**
    The ELF header (Elf32_Ehdr) contains important content, such as:
-   -Program header offset (e_phoff)
-   -Number of program headers (e_phnum)
-   -Entry point address (e_entry)
-   -The loader reads this header first.
+-Program header offset (e_phoff)
+-Number of program headers (e_phnum)
+-Entry point address (e_entry)
+-The loader reads this header first.
 
-3. **Read the Program Headers:**
+4. **Read the Program Headers:**
    Program headers (Elf32_Phdr) describe the segments that need to be loaded into memory. The loader reads all program headers into memory using lseek() to move to the correct file offset.
 
-4. **Load PT_LOAD Segments into Memory:**
+5. **Load PT_LOAD Segments into Memory:**
    Only segments of type PT_LOAD are actually loaded.
    For each loadable segment:
    Memory is allocated with mmap() using read, write, and execute permissions. The segment data from the ELF file (p_filesz bytes) is read into this memory.
 
-5. **Locate the Entry Point:**
+6. **Locate the Entry Point:**
    The ELF header specifies the program’s entry point (e_entry). The loader checks which PT_LOAD segment contains this address. It then calculates the exact pointer inside the mapped memory where execution should begin.
 
-6. **Jump to the Entry Point:**
+7. **Jump to the Entry Point:**
    The entry address is cast to a function pointer _ _start_ . The loader then calls this function, effectively transferring control to the loaded program. When the program finishes, its return value is printed.
 
-7. **Cleanup routine:**
+8. **Cleanup routine:**
    In the cleanup, allocated ELF and program headers are freed, the file descriptor is closed and the mapped segments are also unmapped.
 
 **Bibliography**
