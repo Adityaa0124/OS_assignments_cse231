@@ -22,5 +22,9 @@ Here's a sneak peek at some of the assignments you'll find in this repository:
    - Implement a SimpleLoader for loading an ELF 32-bit executable in plain-C.
    - Without using any library APIs available.
 
+## Contributors
+- [Aditya Kumar](https://github.com/Adityaa0124)
+- [Dipanshu](https://github.com/dipanshu2313uwu)
+
 
 
