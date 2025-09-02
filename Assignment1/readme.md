@@ -33,7 +33,7 @@ sudo apt install make
 
 2. **Read the ELF header:**
    The ELF header (Elf32_Ehdr) contains important content, such as:
-   Program header offset (e_phoff)
+Program header offset (e_phoff)
    Number of program headers (e_phnum)
    Entry point address (e_entry)
    The loader reads this header first.
