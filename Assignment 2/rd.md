@@ -86,10 +86,7 @@ cat helloworld.c | grep print | wc -l
 ### 7. Termination
 
 - The shell handles termination via Ctrl+C (SIGINT).
-- On exit, it performs cleanup and prints a summary of all commands executed in the session, including:
-  - Process ID
-  - Start time
-  - Duration of execution (in seconds)
+- On exit, it performs cleanup and prints a summary of all commands executed in the session and prints the history of all command
 - Example exit output:
 ```bash
 Exiting DragonShell...
