@@ -12,4 +12,4 @@ This project demonstrates the use of system calls such as `fork()`, `exec()`, `w
 ### 1. Compile the shell
 Using `make`:
 ```bash
-make all```
+make all
