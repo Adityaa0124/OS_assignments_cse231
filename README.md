@@ -28,11 +28,17 @@ Here's a sneak peek at some of the assignments you'll find in this repository:
    - implemented the load entire binary content into the memory from the ELF file
    - implemented the loading of the program header
    - tracking the program header and iterate through the phdr table
+   - implemented split function using strtok
+   - formed the github repository and wrotedown the documentation
+   - implemented the read command line function
 - [Dipanshu](https://github.com/dipanshu2313uwu)
    - iterate through the program header table and find the section of PT_LOAD
    - implemented the allocation of memory of size "p_memsz" using mmap function and copy the segment
    - implemented the Navigate to the entrypoint address into the segment loaded in the memory
    - Typecast the address to that of function pointer matching "_start" method in fib.c.
+   - implemented the run pipeline function using pipe
+   - helped in history management and cleanup memory
+   - made the main function using all the functions defined
 
 
 
