@@ -1,6 +1,4 @@
-# CSE231 OS - Assignment-2
-
-## SimpleShell
+# SimpleShell
 
 SimpleShell is a Unix-like command-line interpreter implemented in **C** from scratch as part of the **CSE 231: Operating Systems** course assignment.  
 This project demonstrates the use of system calls such as `fork()`, `exec()`, `wait()`, and `pipe()` to create a working shell that can execute commands, handle arguments, and support piping and history.
@@ -92,6 +90,12 @@ Exiting meowshell...
 ls -l (pid=1234, ran at Mon Sep 16 21:00:00 2025, took 0.05 sec)
 echo hello (pid=1235, ran at Mon Sep 16 21:00:02 2025, took 0.00 sec)
 ```
+**Bibliography**
+   - Chatgpt
+   - Geekforgeeks
+   - Lecture slides
+   - Tutorial slides
+- Using the above sources we learned how to use fork, exec, getline, dup, strtok, getset and cleared our minor doubts during the assignment.
 
 
 
