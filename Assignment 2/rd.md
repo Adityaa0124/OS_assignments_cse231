@@ -66,6 +66,9 @@ sort fib.c
 uniq file.txt
 cat fib.c | wc -l
 cat helloworld.c | grep print | wc -l
+pwd
+cd
+cd -
 ```
 ### 5. **History Feature**
 -The shell maintains a history of executed commands in a fixed-size array (`history[100]`).
