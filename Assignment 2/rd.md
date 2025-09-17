@@ -12,7 +12,7 @@ This project demonstrates the use of system calls such as `fork()`, `exec()`, `w
 ### 1. Compile the shell
 Using `make`:
 ```bash
-make all
+make shell
 ```
 Or manually with `gcc`:
 
@@ -30,7 +30,7 @@ After running, the shell will show a prompt where you can start typing commands.
 
 ### 1. **Read Command**
 - The shell runs in an infinite loop, continuously waiting for user input.  
-- Each loop iteration begins with displaying the **prompt** (`DragonShell> ` in our case).  
+- Each loop iteration begins with displaying the **prompt** (`meowshell:~$  ` in our case).  
 - Input is read using `getline()`, and the trailing newline is stripped off before processing.  
 - If the user presses **Ctrl+D** (EOF), the shell exits gracefully.
 
@@ -80,16 +80,15 @@ cat helloworld.c | grep print | wc -l
 
 ### 6. Pipes
 - Commands are split on the pipe (|), and parsing is in place for multiple commands.
-- However, the current version only executes the first command in the pipeline.
-- Full multi-command pipe support would require connecting processes with pipe() and dup2(), which can be extended in future work.
+- Full multi-command pipe is supported and executed using connecting processes with pipe() and dup2().
 
 ### 7. Termination
 
 - The shell handles termination via Ctrl+C (SIGINT).
-- On exit, it performs cleanup and prints a summary of all commands executed in the session and prints the history of all command
+- On exit, it performs cleanup and prints a summary of all commands executed in the session and prints the history of all commands.
 - Example exit output:
 ```bash
-Exiting DragonShell...
+Exiting meowshell...
 ls -l (pid=1234, ran at Mon Sep 16 21:00:00 2025, took 0.05 sec)
 echo hello (pid=1235, ran at Mon Sep 16 21:00:02 2025, took 0.00 sec)
 ```
