@@ -77,13 +77,13 @@ The shell and scheduler communicate through a named FIFO pipe located at:
   ● Data Sent: Process ID (pid_t)
 
 ## System Calls Used
-  ● fork(): Create child processes
-  ● exec(): Execute binaries
-  ● waitpid(): Wait for process completion
-  ● mkfifo(), open(), read(), write(): Interprocess communication
-  ● kill(): Send control signals (SIGSTOP, SIGCONT, SIGTERM)
-  ● signal(): Handle cleanup and interrupts
-  ● gettimeofday(): Measure job duration
+● fork(): Create child processes
+● exec(): Execute binaries
+● waitpid(): Wait for process completion
+● mkfifo(), open(), read(), write(): Interprocess communication
+● kill(): Send control signals (SIGSTOP, SIGCONT, SIGTERM)
+● signal(): Handle cleanup and interrupts
+● gettimeofday(): Measure job duration
 
 ##CONTRIBUTOR
     ADITYA KUMAR
