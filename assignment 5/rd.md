@@ -6,7 +6,6 @@
 ## Team Members
 - **Aditya Kumar** (Roll No: 2024035)
 - **Dipanshu** (Roll No: 2024196)
-- **GitHub Repository** : [PASTE YOUR PRIVATE GITHUB LINK HERE]
 
 ## Table of Content
 - [Summary](#Summary)
