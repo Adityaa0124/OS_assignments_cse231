@@ -80,7 +80,7 @@ make clean
 ### Biblography 
   - Lecture 21: Introduction to Multithreading. CSE231: Operating Systems. IIIT Delhi.
   - Lecture 22: Race Condition in Multithreading. CSE231: Operating Systems. IIIT Delhi.
-**Online Resources**
+  - **Online Resources**
 1.  *C++ Lambda Expressions*. Retrieved from [RipTutorial](https://riptutorial.com/cplusplus/example/1854/what-is-a-lambda-expression-)
 2.  *Lambda Expressions for Beginners*. Retrieved from [Embarcadero Blogs](https://blogs.embarcadero.com/lambda-expressions-for-beginners/)
 3.  *POSIX Threads Programming*. Lawrence Livermore National Laboratory.
