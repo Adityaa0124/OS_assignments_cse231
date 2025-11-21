@@ -54,3 +54,25 @@ Execution time is measured using `clock_gettime(CLOCK_MONOTONIC)` to capture hig
 In the root directory, run:
 ```bash
 make all
+```
+**Run the Vector Test:**
+In the root directory, run the following command (replace `{Number of Threads}` with an integer, e.g., 4):
+```bash
+./vector {Number of Threads}
+```
+Example: `./vector 4`
+
+**Run the Matrix Test:**
+In the root directory, run the following command:
+```bash
+./matrix {Number of Threads}
+```
+Example: `./matrix 4`
+
+**Clean up: To remove all executables and object files, run:**
+```bash
+make clean
+```
+## Contribution
+All the work was collectively and equally done by both participants, Dipanshu and Aditya.
+The code programming, logic design (structs, lambda handling), and compilation for the Multithreader were collectively discussed and executed via pair programming
