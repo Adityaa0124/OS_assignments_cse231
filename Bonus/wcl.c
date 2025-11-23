@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         
         while ((nread = file_read(file_ino, offset, buf)) > 0) {
             for (int j = 0; j < nread; j++) {
-                if (1) {
+                if (buf[j] == '\n') {
                     total_lines++;
                 }
             }
