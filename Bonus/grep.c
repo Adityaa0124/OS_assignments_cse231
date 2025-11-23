@@ -1,65 +1,88 @@
-/*
- * grep.c - Fixed to use workdir_ino
- */
-
 #include "app.h"
 #include <string.h>
 
-#define BUF_SIZE 4096   
-#define MAX_LINE 1024   
-
-int main(int argc, char *argv[]) {
-    // Check arguments
+int main(int argc, char **argv) {
     if (argc != 3) {
-        printf("Usage: grep [PATTERN] [FILE]\n");
-        exit(1);
+        INFO("Usage: grep [PATTERN] [FILE]");
+        return 0;
     }
-
+    
     char *pattern = argv[1];
     char *filename = argv[2];
-
-    // FIX: Use workdir_ino instead of 0
+    char buf[BLOCK_SIZE];
+    char line[BLOCK_SIZE];
+    int line_idx = 0;
+    
+    // Get the inode number for the file
     int file_ino = dir_lookup(workdir_ino, filename);
-
     if (file_ino < 0) {
-        printf("grep: cannot open %s\n", filename);
-        exit(1);
+        INFO("grep: %s: No such file", filename);
+        return 1;
     }
-
-    char buf[BUF_SIZE];      
-    char line[MAX_LINE];     
-    int line_pos = 0;        
-    int offset = 0;          
-    int nread;
-
-    // Read loop
-    while ((nread = file_read(file_ino, offset, buf)) > 0) {
-        for (int i = 0; i < nread; i++) {
-            char c = buf[i];
-
-            if (line_pos < MAX_LINE - 1) {
-                line[line_pos++] = c;
-            }
-
-            if (c == '\n') {
-                line[line_pos] = '\0'; 
+    
+    // Read the entire file block by block
+    int offset = 0;
+    
+    while (1) {
+        int result = file_read(file_ino, offset, buf);
+        
+        if (result != 0) {
+            // Check if there's a final line without newline
+            if (line_idx > 0) {
+                line[line_idx] = '\0';
                 if (strstr(line, pattern) != NULL) {
-                    printf("%s", line); 
+                    printf("%s\n", line);
                 }
-                line_pos = 0;
+            }
+            break;  // End of file or error
+        }
+        
+        // Check if we should stop after this block
+        int has_null = 0;
+        for (int i = 0; i < BLOCK_SIZE; i++) {
+            if (buf[i] == '\0') {
+                has_null = 1;
+                break;
             }
         }
-        offset += BUF_SIZE;
-    }
-
-    // Handle last line if no newline at EOF
-    if (line_pos > 0) {
-        line[line_pos] = '\0';
-        if (strstr(line, pattern) != NULL) {
-            printf("%s\n", line); 
+        
+        // Process each character in the block
+        for (int i = 0; i < BLOCK_SIZE && buf[i] != '\0'; i++) {
+            char c = buf[i];
+            
+            if (c == '\n') {
+                // End of line - check if pattern matches
+                line[line_idx] = '\0';
+                
+                // Search for pattern in the line
+                if (strstr(line, pattern) != NULL) {
+                    printf("%s\n", line);
+                }
+                
+                // Reset line buffer
+                line_idx = 0;
+            } else {
+                // Add character to current line
+                if (line_idx < BLOCK_SIZE - 1) {
+                    line[line_idx++] = c;
+                }
+            }
         }
+        
+        // If we found a null terminator, check final line and stop
+        if (has_null) {
+            if (line_idx > 0) {
+                line[line_idx] = '\0';
+                if (strstr(line, pattern) != NULL) {
+                    printf("%s\n", line);
+                }
+            }
+            break;
+        }
+        
+        // Move to next block
+        offset += BLOCK_SIZE;
     }
-
-    exit(0);
+    
+    return 0;
 }
-
