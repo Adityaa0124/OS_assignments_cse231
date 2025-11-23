@@ -52,4 +52,35 @@ make clean
 # Compile the OS and applications
 make
 ```
+### 2. Run QEMU Simulation
+Launch the OS in the QEMU emulator:
 
+```bash
+make qemu
+```
+### 3. Boot Options
+Once the emulator starts, you will be prompted to choose a memory translation mechanism.
+
+* Enter `0` for page tables.
+
+### 4. Testing Shell Commands
+Once inside the EGOS shell (`➜ /home/yunhao`), you can test the commands as follows:
+**Test wcl:**
+
+```bash
+wcl README
+# Output: Prints line count (e.g., 20)
+```
+**Test grep:**
+
+```bash
+grep code README
+# Output: Prints lines containing "code"
+```
+## Contribution
+- All the work was collectively and equally done by both participants, Aditya and Depanshu.
+### Biblography 
+- EGOS-2000 Book: https://egos.fun/book/overview.html
+- Bonus Assignment PDF: Section - A | OS Monsoon'2025'.
+- Tutorial 7 - EGOS-2000 operating system
+- AI Assistance - used for the debugging 
