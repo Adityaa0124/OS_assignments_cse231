@@ -1,6 +1,4 @@
-# Bonus Assignment - Group 85 - EGOS -2000
-
-**Topic**: Custom Shell Commands & MLFQ Scheduler Implementation
+# Bonus Assignment - Group 85 - EGOS -2000 Operating system
 **Instructor**: Vivek Kumar
 
 ## Team Members
